@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.c                                           :+:      :+:    :+:   */
+/*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/09 17:09:40 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/10 17:06:50 by zbatik           ###   ########.fr       */
+/*   Created: 2018/07/10 17:07:23 by zbatik            #+#    #+#             */
+/*   Updated: 2018/07/10 17:22:37 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "filler.h"
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <string.h>
 
 void	store_info(int x, int fd, int offset, char **store)
 {
@@ -44,50 +39,8 @@ void	store_dim(int *x, int *y, int offset, int fd)
 	free(line);
 }
 
-/*
-void update_piece(t_filler *info)
-{
-
-}
-*/
-
-void	update_score(t_filler *info)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < info->map_size.x)
-	{
-		j = 0;
-		while (j < info->map_size.y)
-		{
-			if (P1_TOKEN ==	info->map_cur[i][j])
-				info->p1_score++;
-			else if (P2_TOKEN == info->map_cur[i][j])
-				info->p2_score++;
-			j++;
-		}
-		i++;
-	}
-}
-
-void	update_data(t_filler *info)
-{
-	store_info(info->map_size.x, FD, 4, info->map_cur);	
-	store_dim(&(info->piece.x), &(info->piece.y), 6, FD);
-	if (info->piece.cur != NULL)
-		free(info->piece.cur);
-	printf("HERE\n");
-	if (info->piece.x < 1)
-		return ;
-	info->piece.cur = (char**)malloc(sizeof(char*) * (info->piece.x + 1));	
-	store_info(info->piece.x, FD, 0, info->piece.cur);
-	update_score(info);
-}
-
 void	get_player(t_filler *info)
-{	
+{
 	char *line;
 	skip_lines(FD, 6);
 	get_next_line(FD, &line);
@@ -121,16 +74,4 @@ t_filler	*init_data(void)
 	info->p2_score = 0;
 	print_all_info(info);
 	return (info);
-}
-
-int		main(void)
-{
-	t_filler *info;
-	int fd;
-
-	fd = open("resources/out_put", O_RDONLY);
-	info = init_data();
-	
-	close(FD);
-	print_all_info(info);
 }

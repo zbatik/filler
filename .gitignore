@@ -4,3 +4,5 @@ a.out
 libft.a
 *.zip
 filler.trace
+zbatik.filler
+.*.swp
