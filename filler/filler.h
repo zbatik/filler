@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:19:31 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/10 17:23:03 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/12 13:31:02 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define P2_TOKEN 'X'
 # define BLANK '.'
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -58,6 +58,10 @@ typedef struct		s_filler
 	int			p2_score;
 }					t_filler;
 
-void	print_all_info(t_filler *info);
+t_filler	*init_data(void);
+void		print_all_info(t_filler *info);
+void		store_dim(int *x, int *y, int offset, int fd);
+void		store_info(int x, int fd, int offset, char **store);
+void	update_data(t_filler *info);
 
 #endif
