@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:09:40 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/13 14:31:39 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/13 16:49:18 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int		main(void)
 
 	fd = open("../resources/out_put", O_RDONLY);
 	info = init_data();
-	
 	close(FD);
+	ft_putendl("DATA INIT");	
+	print_all_info(info);
 	place(info);
 }

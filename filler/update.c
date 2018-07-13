@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 13:20:07 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/13 16:00:02 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/13 16:30:37 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,6 @@ void	update_data(t_filler *info)
 	info->piece.data = ft_arrnew(info->piece.x, info->piece.y);
 	get_info(info->piece.x, 0,  info->piece.data);
 	/* update score */
-	update_limit(info);
+//	update_limit(info);
 	get_score(&(info->p1_score), &(info->p2_score), info->map_size, info->map);
 }
