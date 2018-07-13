@@ -6,13 +6,13 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 13:20:07 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/12 14:39:05 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/13 12:13:14 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void	store_map(int x, char **store)
+void	get_info(int x, int offset, char **store)
 {
 	int		i;
 	char	*in;
@@ -23,18 +23,18 @@ void	store_map(int x, char **store)
 		get_next_line(FD, &in);
 		if (in == NULL)
 			break ;
-		ft_strcpy(store[i], in + 4);
+		ft_strcpy(store[i], in + offset);
 		i++;
 		free(in);
 	}
 	store[i] = 0;
 }
-
+/*
 void	store_piece(int x, int y, t_filler info)
 {
 	int		i;
 	char	*in;
-	char	**tmp[x][y];
+	char	tmp[x][y];
 
 	i = 0;
 	while (i < x)
@@ -49,7 +49,8 @@ void	store_piece(int x, int y, t_filler info)
 	tmp[i] = 0;
 	info->piece.cur = trim_piece(tmp);
 }
-
+*/
+/*
 char	**trim_piece(int x, int y, char **piece)
 {
 	int i;
@@ -78,65 +79,78 @@ char	**trim_piece(int x, int y, char **piece)
 	offset[2] = 0;
 	offset[3] = 0;
 	info->piece.cur = (char**)malloc(sizeof(char*) * (x - (offset[0] + offset[1]) + 1));
-	while 
+	int cp = 0;
+	while (cp < x - (offset[0] + offset[1]))
+	{
+		info->piece.cur[cp] = ft_strdup(piece[cp + offset[0]]};
+		cp++;
+	}
+	info->piece.cur[cp] = 0;
 }
-
-void	store_dim(int *x, int *y, int offset)
+*/
+void	get_dimension(int *x, int *y, int offset)
 {
-	char *line;
+	char	*line;
+	int		ret;
+//	int		cmp;
 
-	get_next_line(FD, &line);
+	ret = get_next_line(FD, &line);
+/*	if (offset == 8)
+		cmp = 1 == ft_strncmp("Plateau ", line, offset);
+	else
+		cmp = 1 == ft_strncmp("Piece ", line, offset);
+	if (cmp == 0 || ret < 1)
+		perror("not reading the dimension line");
+*/
 	*x = ft_atoi(line + offset);
 	*y = ft_atoi(line + ft_strlen(ft_itoa(*x)) + offset);
 	free(line);
 }
 
-void	update_score(t_filler *info)
+void	get_score(int *p1, int *p2, t_point size, char **map)
 {
 	int i;
 	int j;
 
 	i = 0;
-	while (i < info->map_size.x)
+	while (i < size.x)
 	{
 		j = 0;
-		while (j < info->map_size.y)
+		while (j < size.y)
 		{
-			if (P1_TOKEN ==	info->map_cur[i][j] || 
-					ft_tolower(P1_TOKEN) == info->map_cur[i][j])
-				info->p1_score++;
-			else if (P2_TOKEN == info->map_cur[i][j] ||
-					ft_tolower(P2_TOKEN) == info->map_cur[i][j])
-				info->p2_score++;
+			if (P1_TOKEN ==	map[i][j] || 
+					ft_tolower(P1_TOKEN) == map[i][j])
+				*p1 += 1;
+			else if (P2_TOKEN == map[i][j] ||
+					ft_tolower(P2_TOKEN) == map[i][j])
+				*p2 += 1;
 			j++;
 		}
 		i++;
 	}
 }
 
-void	free_piece(t_filler *info)
+static void	free_piece(char **piece)
 {
-	if (info->piece != NULL)
+	if (piece != NULL)
 	{
 		while (*piece != 0)
 		{
 			free(*piece);
 			piece++;
 		}
-		free(piece);
+		// free(piece); // probably null
 	}
 }
 
 void	update_data(t_filler *info)
 {
-	t_point piece;
-
-	/* update map */
-	store_map(info->map_size.x, info->map_cur);
+	get_info(info->map_size.x, 4, info->map);
 	/* update piece */
-	free_piece(info);
-	store_dim(&(piece.x), &(piece.y), 6);
-	store_piece(piece.x, piece.y, info);
+	free_piece(info->piece.data);
+	get_dimension(&(info->piece.x), &(info->piece.y), 6);
+	info->piece.data = ft_arrnew(info->piece.x, info->piece.y);
+	get_info(info->piece.x, 0,  info->piece.data);
 	/* update score */
-	update_score(info);
+	get_score(&(info->p1_score), &(info->p2_score), info->map_size, info->map);
 }

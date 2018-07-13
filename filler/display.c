@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 15:06:35 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/12 13:47:16 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/13 10:33:48 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void print_map(t_filler *info)
 	ft_putstr("\tMAP y: ");
 	ft_putnbr(info->map_size.y);
 	ft_putchar('\n');
-	ft_putstrarr(info->map_cur);
+	ft_putstrarr(info->map);
 }
 
 void print_piece(t_filler *info)
@@ -33,7 +33,7 @@ void print_piece(t_filler *info)
 	ft_putstr("\tPIECE y: ");
 	ft_putnbr(info->piece.y);
 	ft_putchar('\n');
-	ft_putstrarr(info->piece.cur);
+	ft_putstrarr(info->piece.data);
 }
 
 void print_player_info(t_filler *info)

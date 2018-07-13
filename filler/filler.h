@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:19:31 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/12 13:31:02 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/13 11:34:35 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # define P1_TOKEN 'O'
 # define P2_TOKEN 'X'
 # define BLANK '.'
+# define OFFSET_PIECE 4
+# define OFFSET_MAP 6
 
 # include "../libft/libft.h"
 #include <stdio.h>
@@ -37,7 +39,7 @@ typedef struct		s_piece
 {
 	int		x;
 	int		y;
-	char	**cur;
+	char	**data;
 }					t_piece;
 
 typedef struct		s_player
@@ -51,7 +53,7 @@ typedef struct		s_filler
 {
 	t_player	player;
 	t_point		map_size;
-	char		**map_cur;
+	char		**map;
 	t_piece		piece;
 	int			turn;
 	int			p1_score;
@@ -60,8 +62,8 @@ typedef struct		s_filler
 
 t_filler	*init_data(void);
 void		print_all_info(t_filler *info);
-void		store_dim(int *x, int *y, int offset, int fd);
-void		store_info(int x, int fd, int offset, char **store);
+void		get_dimension(int *x, int *y, int offset);
+void		store_info(int x, char **store);
 void	update_data(t_filler *info);
-
+void	get_score(int *p1, int *p2, t_point size, char **map);
 #endif

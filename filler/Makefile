@@ -6,11 +6,11 @@
 #    By: zbatik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/10 11:19:07 by zbatik            #+#    #+#              #
-#    Updated: 2018/07/12 13:33:19 by zbatik           ###   ########.fr        #
+#    Updated: 2018/07/13 11:33:52 by zbatik           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -g -Wall -Werror -Wextra
 LIBFT_DIR = ../libft/
 LIB	= $(join $(LIBFT_DIR),libft.a)
 BIN = ./zbatik.filler

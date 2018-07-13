@@ -6,3 +6,4 @@ libft.a
 filler.trace
 zbatik.filler
 .*.swp
+*.dSYM
