@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:09:40 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/12 13:46:31 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/13 14:31:39 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ int		main(void)
 	info = init_data();
 	
 	close(FD);
-	print_all_info(info);
+	place(info);
 }

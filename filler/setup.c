@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 17:07:23 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/13 12:05:20 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/13 15:57:59 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,10 @@ static void set_defaults(t_filler *info)
 	info->turn = 0;
 	info->p1_score = 0;
 	info->p2_score = 0;
-}
-
-char	**map_alloc(int x, int y)
-{
-	char **map;
-	int i;
-
-	map = (char**)malloc(sizeof(char*) * (x + 1));
-	i = 0;
-	while (i < x)
-		map[i++] = ft_strnew(y);
-	map[i] = NULL;
-	return (map);
+	info->limit.left = 0;
+	info->limit.right = 0;
+	info->limit.top = 0;
+	info->limit.bottom = 0;
 }
 
 t_filler	*init_data(void)

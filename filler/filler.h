@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:19:31 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/13 11:34:35 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/13 16:06:58 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,15 @@ typedef struct		s_player
 {
 	int		nbr;
 	char	token;
-	t_point	start;
 }					t_player;
+
+typedef	struct		s_limit
+{
+	int top;
+	int bottom;
+	int left;
+	int right;
+}					t_limit;
 
 typedef struct		s_filler
 {
@@ -58,12 +65,20 @@ typedef struct		s_filler
 	int			turn;
 	int			p1_score;
 	int			p2_score;
+	t_limit		limit;
 }					t_filler;
 
 t_filler	*init_data(void);
 void		print_all_info(t_filler *info);
+void 		print_score(t_filler *info);
+void 		print_player_info(t_filler *info);
+void 		print_piece(t_filler *info);
+void 		print_map(t_filler *info);
+
 void		get_dimension(int *x, int *y, int offset);
 void		store_info(int x, char **store);
 void	update_data(t_filler *info);
 void	get_score(int *p1, int *p2, t_point size, char **map);
+int place(t_filler *info);
+void	update_limit(t_filler *info);
 #endif

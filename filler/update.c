@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 13:20:07 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/13 12:13:14 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/13 16:00:02 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,6 @@ void	get_info(int x, int offset, char **store)
 	}
 	store[i] = 0;
 }
-/*
-void	store_piece(int x, int y, t_filler info)
-{
-	int		i;
-	char	*in;
-	char	tmp[x][y];
-
-	i = 0;
-	while (i < x)
-	{
-		get_next_line(FD, &in);
-		if (in == NULL)
-			break ;
-		ft_strcpy(tmp[i], in);
-		i++;
-		free(in);
-	}
-	tmp[i] = 0;
-	info->piece.cur = trim_piece(tmp);
-}
-*/
 /*
 char	**trim_piece(int x, int y, char **piece)
 {
@@ -92,16 +71,8 @@ void	get_dimension(int *x, int *y, int offset)
 {
 	char	*line;
 	int		ret;
-//	int		cmp;
 
 	ret = get_next_line(FD, &line);
-/*	if (offset == 8)
-		cmp = 1 == ft_strncmp("Plateau ", line, offset);
-	else
-		cmp = 1 == ft_strncmp("Piece ", line, offset);
-	if (cmp == 0 || ret < 1)
-		perror("not reading the dimension line");
-*/
 	*x = ft_atoi(line + offset);
 	*y = ft_atoi(line + ft_strlen(ft_itoa(*x)) + offset);
 	free(line);
@@ -152,5 +123,6 @@ void	update_data(t_filler *info)
 	info->piece.data = ft_arrnew(info->piece.x, info->piece.y);
 	get_info(info->piece.x, 0,  info->piece.data);
 	/* update score */
+	update_limit(info);
 	get_score(&(info->p1_score), &(info->p2_score), info->map_size, info->map);
 }
