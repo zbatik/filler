@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:19:31 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/14 13:22:41 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/14 17:41:03 by zack             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define OFFSET_PIECE 4
 # define OFFSET_MAP 6
 
-# include "../libft/libft.h"
+# include "../libft/includes/libft.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>

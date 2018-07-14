@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 13:20:07 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/14 14:14:10 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/14 17:46:47 by zack             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ void	get_info(int x, int offset, char **store)
 void	get_dimension(int *x, int *y, int offset)
 {
 	char	*line;
-	int		ret;
 
-	ret = get_next_line(FD, &line);
+	get_next_line(FD, &line);
 	*x = ft_atoi(line + offset);
 	*y = ft_atoi(line + ft_strlen(ft_itoa(*x)) + offset);
 	free(line);

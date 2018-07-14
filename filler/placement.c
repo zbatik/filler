@@ -6,15 +6,12 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 12:20:12 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/14 13:56:45 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/14 17:55:49 by zack             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int	vaild_play(char **map)
-{
-	t_point score;
 
 
 int put(int xi, int yj, char **map, t_filler *info)
@@ -37,6 +34,7 @@ int put(int xi, int yj, char **map, t_filler *info)
 				if (map[i][j] == info->player.token)
 					overlap++;
 				map[i][j] = info->player.token; //remove this line
+			
 			}
 			j++;
 		}
@@ -46,13 +44,15 @@ int put(int xi, int yj, char **map, t_filler *info)
 }
 
 static void	reset_map(char **map, char **original_map, int x)
-{
+{	
+	int k;
+
 	k = -1;
 	while (++k < x)
 		ft_strcpy(map[k], original_map[k]);	
 }
 
-t_point	place(t_filler *info)
+int	place(t_filler *info)
 {
 	int		i;
 	int		j;
@@ -69,15 +69,15 @@ t_point	place(t_filler *info)
 		{
 			reset_map(map, info->map, info->map_size.x);
 			overlap = put(i, j, map, info);
-			if (overlap == 1);
+			if (overlap == 1)
 			{
-				print_coords("", i, j);
 				ft_putstrarr(map);
+				print_coords("", i, j);
 			}
 			j++;
 		}
 		i++;
 	}
-	ft_delarr(map);
+//	ft_arrdel(&map);
 	return (0);
 }

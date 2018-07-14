@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 17:07:23 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/14 13:37:22 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/14 17:54:40 by zack             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	set_player(t_filler *info)
 	{
 		info->player.nbr = 2;
 		info->player.token = P2_TOKEN;
-		info->player.opp_token = P2_TOKEN;
+		info->player.opp_token = P1_TOKEN;
 	}
 	free(line);
 	skip_lines(FD, 2);
