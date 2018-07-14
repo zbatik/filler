@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 15:45:57 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/13 16:38:49 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/14 13:15:39 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static void limit_bottom(t_filler *info)
 		{
 			if (info->map[i][j] == info->player.token)
 			{	
-			//	info->limit.bottom = i; 
 				info->limit.bottom = ft_min(i, info->map_size.x - (info->piece.x + 1));
 				return ;
 			}
@@ -66,7 +65,6 @@ static void limit_left(t_filler *info)
 		{
 			if (info->map[i][j] == info->player.token)
 			{	
-				//info->limit.left = j; 
 				info->limit.left = ft_max(0, j - (info->piece.y - 1));
 				return ;
 			}
@@ -87,7 +85,6 @@ static void limit_right(t_filler *info)
 		{
 			if (info->map[i][j] == info->player.token)
 			{	
-				//info->limit.right = j;
 				info->limit.right = ft_min(j, info->map_size.y - (info->piece.y + 1));
 				return ;
 			}

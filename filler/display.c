@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 15:06:35 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/13 10:33:48 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/14 13:01:16 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,20 @@ void print_score(t_filler *info)
 	ft_putchar('\n');
 }
 
+void print_limit(t_filler *info)
+{
+	ft_putstr("TOP: ");
+	ft_putnbr(info->limit.top);
+}
+
+void print_coords(char *s, int x, int y)
+{
+	ft_putstr(s);
+	ft_putnbr(x);
+	ft_putchar(' ');
+	ft_putnbr(y);
+	ft_putchar('\n');
+}
 void	print_all_info(t_filler *info)
 {
 	print_player_info(info);	

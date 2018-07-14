@@ -6,7 +6,7 @@
 #    By: zbatik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/10 11:19:07 by zbatik            #+#    #+#              #
-#    Updated: 2018/07/13 16:02:05 by zbatik           ###   ########.fr        #
+#    Updated: 2018/07/14 13:55:51 by zbatik           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,3 +26,6 @@ all:
 	make -s -C $(LIBFT_DIR)
 	gcc $(FLAGS) $(FILES) $(LIB) -o $(BIN)
 	$(BIN)
+
+norm:
+	norminette $(FILES) filler.h

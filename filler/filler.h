@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:19:31 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/13 16:06:58 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/14 13:22:41 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct		s_piece
 typedef struct		s_player
 {
 	int		nbr;
+	int		opp_token;
 	char	token;
 }					t_player;
 
@@ -74,6 +75,8 @@ void 		print_score(t_filler *info);
 void 		print_player_info(t_filler *info);
 void 		print_piece(t_filler *info);
 void 		print_map(t_filler *info);
+void		print_coords(char *s, int x, int y);
+void		print_limit(t_filler *info);
 
 void		get_dimension(int *x, int *y, int offset);
 void		store_info(int x, char **store);
