@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 13:20:07 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/14 17:46:47 by zack             ###   ########.fr       */
+/*   Updated: 2018/07/14 18:06:21 by zack             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	get_dimension(int *x, int *y, int offset)
 	*y = ft_atoi(line + ft_strlen(ft_itoa(*x)) + offset);
 	free(line);
 }
-
+/*
 void	get_score(int *p1, int *p2, t_point size, char **map)
 {
 	int i;
@@ -62,29 +62,14 @@ void	get_score(int *p1, int *p2, t_point size, char **map)
 		i++;
 	}
 }
-
-static void	free_piece(char **piece)
-{
-	if (piece != NULL)
-	{
-		while (*piece != 0)
-		{
-			free(*piece);
-			piece++;
-		}
-		// free(piece); // probably null
-	}
-}
-
+*/
 void	update_data(t_filler *info)
 {
 	get_info(info->map_size.x, 4, info->map);
-	/* update piece */
 	free_piece(info->piece.data);
 	get_dimension(&(info->piece.x), &(info->piece.y), 6);
 	info->piece.data = ft_arrnew(info->piece.x, info->piece.y);
-	get_info(info->piece.x, 0,  info->piece.data);
+	get_info(info->piece.x, 0, info->piece.data);
 	/* update score */
-//	update_limit(info);
-	get_score(&(info->p1_score), &(info->p2_score), info->map_size, info->map);
+//	get_score(&(info->p1_score), &(info->p2_score), info->map_size, info->map);
 }

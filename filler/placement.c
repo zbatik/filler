@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 12:20:12 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/14 17:55:49 by zack             ###   ########.fr       */
+/*   Updated: 2018/07/14 18:04:47 by zack             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int put(int xi, int yj, char **map, t_filler *info)
 					return (0);
 				if (map[i][j] == info->player.token)
 					overlap++;
+				if (overlap > 1)
+					return (0);
 				map[i][j] = info->player.token; //remove this line
 			
 			}
@@ -49,7 +51,8 @@ static void	reset_map(char **map, char **original_map, int x)
 
 	k = -1;
 	while (++k < x)
-		ft_strcpy(map[k], original_map[k]);	
+		ft_strcpy(map[k], original_map[k]);
+	map[k] = NULL;
 }
 
 int	place(t_filler *info)
@@ -78,6 +81,6 @@ int	place(t_filler *info)
 		}
 		i++;
 	}
-//	ft_arrdel(&map);
+//	ft_arrdel(&map); // currently not working - re work ft_arrdel
 	return (0);
 }
