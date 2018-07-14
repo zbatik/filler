@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 13:20:07 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/14 18:06:21 by zack             ###   ########.fr       */
+/*   Updated: 2018/07/14 18:20:28 by zack             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	get_score(int *p1, int *p2, t_point size, char **map)
 void	update_data(t_filler *info)
 {
 	get_info(info->map_size.x, 4, info->map);
-	free_piece(info->piece.data);
+	//free_piece(info->piece.data);
 	get_dimension(&(info->piece.x), &(info->piece.y), 6);
 	info->piece.data = ft_arrnew(info->piece.x, info->piece.y);
 	get_info(info->piece.x, 0, info->piece.data);
