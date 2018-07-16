@@ -6,48 +6,40 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 15:06:35 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/14 13:01:16 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/16 13:07:49 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+#include <stdio.h>
 
+void put_error_arr(char ** arr)
+{
+	while (*arr)
+	{
+		fprintf(stderr, "%s\n", *arr);
+		arr++;
+	}
+}
+	
 void print_map(t_filler *info)
 {
-	ft_putendl("CURRENT MAP");
-	ft_putstr("\tMAP x: ");
-	ft_putnbr(info->map_size.x);
-	ft_putchar('\n');
-	ft_putstr("\tMAP y: ");
-	ft_putnbr(info->map_size.y);
-	ft_putchar('\n');
-	ft_putstrarr(info->map);
+	fprintf(stderr, "MAP DIM = x: %d, y; %d\n", info->map_size.x, info->map_size.y);
+	put_error_arr(info->map);
 }
 
 void print_piece(t_filler *info)
 {
-	ft_putendl("CURRENT PEICE");
-	ft_putstr("\tPIECE x: ");
-	ft_putnbr(info->piece.x);
-	ft_putchar('\n');
-	ft_putstr("\tPIECE y: ");
-	ft_putnbr(info->piece.y);
-	ft_putchar('\n');
-	ft_putstrarr(info->piece.data);
+	fprintf(stderr, "PIECE DIM = x: %d, y; %d\n", info->piece.x, info->piece.y);
+	put_error_arr(info->piece.data);
 }
 
 void print_player_info(t_filler *info)
 {	
-	ft_putendl("PLAYER INFO:");
-	ft_putstr("YOU ARE: ");
-	ft_putstr(PLAYER_NAME);
-	ft_putstr(" PLAYING AS PLAYER ");
-	ft_putnbr(info->player.nbr);
-	ft_putstr(" WITH ");
-	ft_putchar(info->player.token);
-	ft_putchar('\n');
+	fprintf(stderr, "Playing as Player %d\n with token %c against token %c\n", info->player.nbr, info->player.token, info->player.opp_token);
 }
 
+/*
 void print_score(t_filler *info)
 {
 	ft_putendl("CURRENT SOCORE:");
@@ -58,6 +50,7 @@ void print_score(t_filler *info)
 	ft_putnbr(info->p2_score);
 	ft_putchar('\n');
 }
+*/
 
 void print_limit(t_filler *info)
 {
@@ -78,7 +71,7 @@ void	print_all_info(t_filler *info)
 	print_player_info(info);	
 	print_map(info);
 	print_piece(info);
-	print_score(info);
+//	print_score(info);
 	ft_putstr("CURRENT TURN: "); 
 	ft_putnbr(info->turn);
  	ft_putchar('\n');

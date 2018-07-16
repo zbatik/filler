@@ -6,15 +6,16 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:19:31 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/14 17:41:03 by zack             ###   ########.fr       */
+/*   Updated: 2018/07/16 13:04:34 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLER_H
 # define FILLER_H
 
-# define PLAYER_NAME "zbatik.filler"
-# define FD	3
+//# define PLAYER_NAME "zbatik.filler"
+# define FD	0
+# define DEBUG 0
 # define P1_TOKEN 'O'
 # define P2_TOKEN 'X'
 # define BLANK '.'
@@ -47,6 +48,7 @@ typedef struct		s_player
 	int		nbr;
 	int		opp_token;
 	char	token;
+//	char	*name;
 }					t_player;
 
 typedef	struct		s_limit
@@ -64,12 +66,13 @@ typedef struct		s_filler
 	char		**map;
 	t_piece		piece;
 	int			turn;
-	int			p1_score;
-	int			p2_score;
+//	int			p1_score;
+//	int			p2_score;
 	t_limit		limit;
+	int			error;
 }					t_filler;
 
-t_filler	*init_data(void);
+t_filler	*init_data();
 void		print_all_info(t_filler *info);
 void 		print_score(t_filler *info);
 void 		print_player_info(t_filler *info);
