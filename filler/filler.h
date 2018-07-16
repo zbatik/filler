@@ -6,21 +6,14 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:19:31 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/16 13:04:34 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/16 13:30:06 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLER_H
 # define FILLER_H
 
-//# define PLAYER_NAME "zbatik.filler"
 # define FD	0
-# define DEBUG 0
-# define P1_TOKEN 'O'
-# define P2_TOKEN 'X'
-# define BLANK '.'
-# define OFFSET_PIECE 4
-# define OFFSET_MAP 6
 
 # include "../libft/includes/libft.h"
 #include <stdio.h>
@@ -48,7 +41,6 @@ typedef struct		s_player
 	int		nbr;
 	int		opp_token;
 	char	token;
-//	char	*name;
 }					t_player;
 
 typedef	struct		s_limit
@@ -66,10 +58,7 @@ typedef struct		s_filler
 	char		**map;
 	t_piece		piece;
 	int			turn;
-//	int			p1_score;
-//	int			p2_score;
 	t_limit		limit;
-	int			error;
 }					t_filler;
 
 t_filler	*init_data();
@@ -83,8 +72,8 @@ void		print_limit(t_filler *info);
 
 void		get_dimension(int *x, int *y, int offset);
 void		store_info(int x, char **store);
-void	update_data(t_filler *info);
-void	get_score(int *p1, int *p2, t_point size, char **map);
-int place(t_filler *info);
-void	update_limit(t_filler *info);
+void		update_data(t_filler *info);
+void		get_score(int *p1, int *p2, t_point size, char **map);
+int 		place(t_filler *info);
+void		update_limit(t_filler *info);
 #endif

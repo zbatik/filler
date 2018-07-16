@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 13:20:07 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/16 13:17:57 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/16 13:51:23 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	get_info(int x, int offset, char **store)
 	while (i < x)
 	{
 		get_next_line(FD, &in);
-	//	fprintf(stderr, "%s\n", in);
 		if (in == NULL)
 			break ;
 		ft_strcpy(store[i], in + offset);
@@ -74,6 +73,4 @@ void	update_data(t_filler *info)
 	info->piece.data = ft_arrnew(info->piece.x, info->piece.y);
 	get_info(info->piece.x, 0, info->piece.data);
 	update_limit(info);
-	/* update score */
-//	get_score(&(info->p1_score), &(info->p2_score), info->map_size, info->map);
 }
