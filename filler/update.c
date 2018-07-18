@@ -69,8 +69,8 @@ void	update_data(t_filler *info)
 		skip_lines(FD, 2);
 	get_info(info->map_size.x, 4, info->map);
 	//free_piece(info->piece.data);
-	get_dimension(&(info->piece.x), &(info->piece.y), 6);
-	info->piece.data = ft_arrnew(info->piece.x, info->piece.y);
-	get_info(info->piece.x, 0, info->piece.data);
+	get_dimension(&(info->piece.size.x), &(info->piece.size.y), 6);
+	info->piece.data = ft_arrnew(info->piece.size.x, info->piece.size.y);
+	get_info(info->piece.size.x, 0, info->piece.data);
 	update_limit(info);
 }

@@ -31,8 +31,8 @@ static void set_defaults(t_filler *info)
 	info->player.nbr = 0;
 	info->player.token = '\0';
 	info->piece.data = NULL;
-	info->piece.x = 0;
-	info->piece.y = 0;
+	info->piece.size.x = 0;
+	info->piece.size.y = 0;
 	info->turn = 0;
 	info->limit.left = 0;
 	info->limit.right = 0;

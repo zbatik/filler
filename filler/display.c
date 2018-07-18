@@ -30,7 +30,7 @@ void print_map(t_filler *info)
 
 void print_piece(t_filler *info)
 {
-	fprintf(stderr, "PIECE DIM = x: %d, y; %d\n", info->piece.x, info->piece.y);
+	fprintf(stderr, "PIECE DIM = x: %d, y; %d\n", info->piece.size.x, info->piece.size.y);
 	put_error_arr(info->piece.data);
 }
 

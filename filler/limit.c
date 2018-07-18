@@ -25,7 +25,7 @@ static void limit_top(t_filler *info)
 		{
 			if (info->map[i][j] == info->player.token)
 			{	
-				info->limit.top = ft_max(0, i - (info->piece.x - 1));
+				info->limit.top = ft_max(0, i - (info->piece.size.x - 1));
 				return ;
 			}
 		}
@@ -45,7 +45,7 @@ static void limit_bottom(t_filler *info)
 		{
 			if (info->map[i][j] == info->player.token)
 			{	
-				info->limit.bottom = ft_min(i, info->map_size.x - info->piece.x);
+				info->limit.bottom = ft_min(i, info->map_size.x - info->piece.size.x);
 				return ;
 			}
 		}
@@ -65,7 +65,7 @@ static void limit_left(t_filler *info)
 		{
 			if (info->map[i][j] == info->player.token)
 			{	
-				info->limit.left = ft_max(0, j - (info->piece.y - 1));
+				info->limit.left = ft_max(0, j - (info->piece.size.y - 1));
 				return ;
 			}
 		}
@@ -85,7 +85,7 @@ static void limit_right(t_filler *info)
 		{
 			if (info->map[i][j] == info->player.token)
 			{	
-				info->limit.right = ft_min(j, info->map_size.y - info->piece.y);
+				info->limit.right = ft_min(j, info->map_size.y - info->piece.size.y);
 				return ;
 			}
 		}

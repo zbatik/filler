@@ -20,10 +20,10 @@ int put(int xi, int yj, t_filler *info)
 	
 	overlap = 0;
 	i = xi;
-	while (i < xi + info->piece.x)
+	while (i < xi + info->piece.size.x)
 	{
 		j = yj;
-		while (j < yj + info->piece.y)
+		while (j < yj + info->piece.size.y)
 		{
 			if (info->piece.data[i - xi][j - yj] == '*')
 			{

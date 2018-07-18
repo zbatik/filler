@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:19:31 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/16 13:30:06 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/18 15:19:20 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct		s_point
 
 typedef struct		s_piece
 {
-	int		x;
-	int		y;
+	t_point offset;
+	t_point	size;
 	char	**data;
 }					t_piece;
 
