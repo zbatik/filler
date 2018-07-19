@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 12:20:12 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/16 13:51:26 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/19 16:15:59 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	place(t_filler *info)
 			overlap = put(i, j, info);
 			if (overlap == 1)
 			{
-				print_coords("", i, j);
+				print_coords("", i - info->piece.offset.x, j - info->piece.offset.y);
 				info->turn++;
 				return (1);	
 			}

@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 15:45:57 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/19 15:20:00 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/19 16:27:45 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,25 @@ int offset_top(char **piece, t_point dim)
 		if (ft_element('*', piece[i]))
 			return (i);
 	}
-	return (i);
+	perror("invalid piece");
+	return (-1);
 }
 
 int offset_bottom(char **piece, t_point dim)
 {
 	int i;
+	int count;
 
+	count = 0;
 	i = dim.x;
 	while (--i >= 0)
 	{
 		if (ft_element('*', piece[i]))
-			return (i);
+			return (count);
+		count++;
 	}
-	return (i);
+	perror("invalid piece");
+	return (-1);
 }
 
 int	offset_left(char **piece, t_point dim)
@@ -50,55 +55,45 @@ int	offset_left(char **piece, t_point dim)
 		while (++i < dim.x)
 		{
 			if (piece[i][j] == '*')
-				return (i);
+				return (j);
 		}
 	}
-	return (i);
+	perror("invalid piece");
+	return (-1);
 }
 
 int offset_right(char **piece, t_point dim)
 {
 	int i;
 	int j;
+	int count;
 
 	j = dim.y;
+	count = 0;
 	while (--j >= 0)
 	{
 		i = dim.x;
 		while (--i >= 0)
 		{
 			if (piece[i][j] == '*')
-				return (i);
+				return (count);
 		}
+		count ++;
 	}
-	return (i);
+	perror("invalid piece");
+	return (-1);
 }
 
-void trim_piece(char **piece, t_point dim, t_filler *info)
+void trim_piece(char **piece, t_filler *info)
 {
-	int i;
-	int j;
-	int overlap;
+	int		i;
+	int		j;
 
-	overlap = 0;
-	i = xi;
-	while (i < xi + info->piece.size.x)
+	i = -1;
+	while (++i < info->piece.size.x)
 	{
-		j = yj;
-		while (j < yj + info->piece.size.y)
-		{
-			if (info->piece.data[i - xi][j - yj] == '*')
-			{
-				if (info->map[i][j] == info->player.opp_token)
-					return (0);
-				if (info->map[i][j] == info->player.token)
-					overlap++;
-				if (overlap > 1)
-					return (0);
-			}
-			j++;
-		}
-		i++;
+		j = -1;
+		while (++j < info->piece.size.y)
+			info->piece.data[i][j] = piece[i + info->piece.offset.x][ j + info->piece.offset.y];
 	}
-	return (overlap);
 }

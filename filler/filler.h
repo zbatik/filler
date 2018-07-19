@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:19:31 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/19 15:19:35 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/19 16:09:50 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct		s_filler
 }					t_filler;
 
 t_filler	*init_data();
+void		put_error_arr(char ** arr);
 void		print_all_info(t_filler *info);
 void 		print_score(t_filler *info);
 void 		print_player_info(t_filler *info);
@@ -73,10 +74,11 @@ void		print_limit(t_filler *info);
 void		get_dimension(int *x, int *y, int offset);
 void		store_info(int x, char **store);
 void		update_data(t_filler *info);
-int			offset_top(char **piece, int x);
-int			offset_bottom(char **piece, int x);
-int			offset_left(char **piece, int x, int y);
-int			offset_right(char **piece, int x, int y);
+int			offset_top(char **piece, t_point dim);
+int			offset_bottom(char **piece, t_point dim);
+int			offset_left(char **piece, t_point dim);
+int			offset_right(char **piece, t_point dim);
+void		trim_piece(char **piece, t_filler *info);
 void		get_score(int *p1, int *p2, t_point size, char **map);
 int 		place(t_filler *info);
 void		update_limit(t_filler *info);
