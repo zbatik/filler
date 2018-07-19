@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 15:06:35 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/16 13:07:49 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/19 11:50:14 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void print_piece(t_filler *info)
 	fprintf(stderr, "PIECE DIM = x: %d, y; %d\n", info->piece.size.x, info->piece.size.y);
 	put_error_arr(info->piece.data);
 }
-
+/*
 void print_player_info(t_filler *info)
 {	
 	fprintf(stderr, "Playing as Player %d\n with token %c against token %c\n", info->player.nbr, info->player.token, info->player.opp_token);
 }
-
+*/
 /*
 void print_score(t_filler *info)
 {
@@ -68,7 +68,7 @@ void print_coords(char *s, int x, int y)
 }
 void	print_all_info(t_filler *info)
 {
-	print_player_info(info);	
+//	print_player_info(info);	
 	print_map(info);
 	print_piece(info);
 //	print_score(info);

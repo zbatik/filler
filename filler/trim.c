@@ -6,96 +6,99 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 15:45:57 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/18 17:10:52 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/19 15:20:00 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static void offset_top(t_piece *piece)
+int offset_top(char **piece, t_point dim)
 {
 	int i;
-	int j;
 
 	i = -1;
-	while (++i < piece->size.x)
+	while (++i < dim.x)
 	{
-		j = -1;
-		while (++j < piece->size.y)
-		{
-			if (piece->data[i][j] == '*')
-			{	
-				piece->offset.x = i;
-				return ;
-			}
-		}
+		if (ft_element('*', piece[i]))
+			return (i);
 	}
+	return (i);
 }
 
-static int offset_bottom(t_piece piece)
+int offset_bottom(char **piece, t_point dim)
 {
 	int i;
-	int j;
 
-	i = piece->size.x;
+	i = dim.x;
 	while (--i >= 0)
 	{
-		j = piece->size.y;
-		while (--j >= 0)
-		{
-			if (piece->data[i][j] == "*")
-				return (i);
-		}
+		if (ft_element('*', piece[i]))
+			return (i);
 	}
+	return (i);
 }
 
-static void offset_left(t_piece piece)
+int	offset_left(char **piece, t_point dim)
 {
-	int i;
-	int j;
+	int		i;
+	int		j;
 
 	j = -1;
-	while (++j < piece->size.y)
+	while (++j < dim.y)
 	{
 		i = -1;
-		while (++i < piece->size.x)
+		while (++i < dim.x)
 		{
-			if (piece->data[i][j] == "*")
-			{
-				piece->offset.y = i;	
-				return ;
-			}
+			if (piece[i][j] == '*')
+				return (i);
 		}
 	}
+	return (i);
 }
 
-static int offset_right(t_piece *piece)
+int offset_right(char **piece, t_point dim)
 {
 	int i;
 	int j;
 
-	j = piece->size.y;
+	j = dim.y;
 	while (--j >= 0)
 	{
-		i = piece->size.x;
+		i = dim.x;
 		while (--i >= 0)
 		{
-			if (piece->data[i][j] == "*")
-			{	
+			if (piece[i][j] == '*')
 				return (i);
-			}
 		}
 	}
+	return (i);
 }
 
-void trim_piece(t_filler *info)
+void trim_piece(char **piece, t_point dim, t_filler *info)
 {
-	int off_bot;
-	int off_right;
+	int i;
+	int j;
+	int overlap;
 
-	offset_top(&info->piece);
-	off_bot = offset_bottom(&info->piece);
-	offset_left(&info->piece);
-	off_right = offset_right(&info->piece);
-
+	overlap = 0;
+	i = xi;
+	while (i < xi + info->piece.size.x)
+	{
+		j = yj;
+		while (j < yj + info->piece.size.y)
+		{
+			if (info->piece.data[i - xi][j - yj] == '*')
+			{
+				if (info->map[i][j] == info->player.opp_token)
+					return (0);
+				if (info->map[i][j] == info->player.token)
+					overlap++;
+				if (overlap > 1)
+					return (0);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (overlap);
 }

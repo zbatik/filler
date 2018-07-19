@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 17:07:23 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/16 13:37:53 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/19 15:18:18 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 static void	set_player(t_filler *info)
 {
-	char *line;
+	char	*line;
+	int		player_nbr;
 
 	get_next_line(FD, &line);
-	info->player.nbr = ft_atoi(10 + line);
-	info->player.token = "$OX"[info->player.nbr];
-	info->player.opp_token = "$XO"[info->player.nbr];
+	player_nbr = ft_atoi(10 + line);
+	info->player.token = "$OX"[player_nbr];
+	info->player.opp_token = "$XO"[player_nbr];
 	free(line);
 }
 
@@ -28,11 +29,13 @@ static void set_defaults(t_filler *info)
 	info->map = NULL;
 	info->map_size.x = 0;
 	info->map_size.y = 0;
-	info->player.nbr = 0;
+//	info->player.nbr = 0;
 	info->player.token = '\0';
 	info->piece.data = NULL;
 	info->piece.size.x = 0;
 	info->piece.size.y = 0;
+	info->piece.offset.x = 0;
+	info->piece.offset.y = 0;
 	info->turn = 0;
 	info->limit.left = 0;
 	info->limit.right = 0;

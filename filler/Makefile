@@ -6,7 +6,7 @@
 #    By: zbatik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/10 11:19:07 by zbatik            #+#    #+#              #
-#    Updated: 2018/07/16 11:55:59 by zbatik           ###   ########.fr        #
+#    Updated: 2018/07/19 11:22:22 by zbatik           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ FILES = main.c \
 		setup.c \
 		update.c \
 		placement.c \
-		limit.c 
+		limit.c \
+	   	trim.c 	
 
 all:
 	rm -f $(BIN)

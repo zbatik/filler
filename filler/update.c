@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 13:20:07 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/16 13:51:23 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/19 15:19:33 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,38 +39,30 @@ void	get_dimension(int *x, int *y, int offset)
 	*y = ft_atoi(line + ft_strlen(ft_itoa(*x)) + offset);
 	free(line);
 }
-/*
-void	get_score(int *p1, int *p2, t_point size, char **map)
-{
-	int i;
-	int j;
 
-	i = 0;
-	while (i < size.x)
-	{
-		j = 0;
-		while (j < size.y)
-		{
-			if (P1_TOKEN ==	map[i][j] || 
-					ft_tolower(P1_TOKEN) == map[i][j])
-				*p1 += 1;
-			else if (P2_TOKEN == map[i][j] ||
-					ft_tolower(P2_TOKEN) == map[i][j])
-				*p2 += 1;
-			j++;
-		}
-		i++;
-	}
+void	update_piece(t_filler *info)
+{	
+	char	**piece;
+	t_point dim;
+
+	get_dimension(&dim.x, &dim.y, 6);
+	piece = ft_arrnew(dim.x, dim.y);
+	get_info(dim.x, 0, piece);
+	info->piece.offset.x = offset_top(piece, dim);
+	info->piece.offset.y = offset_left(piece, dim);
+	info->piece.size.x = dim.x - info->piece.offset.x - offset_bottom(piece, dim);
+	info->piece.size.y = dim.y - info->piece.offset.y - offset_right(piece, dim);
+	//info->piece.size.y = dim.y;
+	//info->piece.data = piece;
+	trim_piece(piece, dim, info);
+	ft_delarr(piece);
 }
-*/
+
 void	update_data(t_filler *info)
 {
 	if (info->turn != 0)
 		skip_lines(FD, 2);
 	get_info(info->map_size.x, 4, info->map);
-	//free_piece(info->piece.data);
-	get_dimension(&(info->piece.size.x), &(info->piece.size.y), 6);
-	info->piece.data = ft_arrnew(info->piece.size.x, info->piece.size.y);
-	get_info(info->piece.size.x, 0, info->piece.data);
+	update_piece(info);
 	update_limit(info);
 }
