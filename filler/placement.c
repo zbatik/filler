@@ -6,18 +6,18 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 12:20:12 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/19 16:15:59 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/19 16:55:34 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int put(int xi, int yj, t_filler *info)
+int	put(int xi, int yj, t_filler *info)
 {
 	int i;
 	int j;
 	int overlap;
-	
+
 	overlap = 0;
 	i = xi;
 	while (i < xi + info->piece.size.x)
@@ -40,24 +40,13 @@ int put(int xi, int yj, t_filler *info)
 	}
 	return (overlap);
 }
-/*
-static void	reset_map(char **map, char **original_map, int x)
-{	
-	int k;
 
-	k = -1;
-	while (++k < x)
-		ft_strcpy(map[k], original_map[k]);
-	map[k] = NULL;
-}
-*/
 int	place(t_filler *info)
 {
 	int		i;
 	int		j;
 	int		overlap;
-	
-	//update_limit(info);
+
 	i = info->limit.top;
 	while (i < info->limit.bottom + 1)
 	{
@@ -67,14 +56,14 @@ int	place(t_filler *info)
 			overlap = put(i, j, info);
 			if (overlap == 1)
 			{
-				print_coords("", i - info->piece.offset.x, j - info->piece.offset.y);
+				print_coords(i - info->piece.offset.x,
+						j - info->piece.offset.y);
 				info->turn++;
-				return (1);	
+				return (1);
 			}
 			j++;
 		}
 		i++;
 	}
-//	ft_arrdel(&map); // currently not working - re work ft_arrdel
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 17:07:23 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/19 15:18:18 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/19 16:50:41 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,11 @@ static void	set_player(t_filler *info)
 	free(line);
 }
 
-static void set_defaults(t_filler *info)
+static void	set_defaults(t_filler *info)
 {
 	info->map = NULL;
 	info->map_size.x = 0;
 	info->map_size.y = 0;
-//	info->player.nbr = 0;
 	info->player.token = '\0';
 	info->piece.data = NULL;
 	info->piece.size.x = 0;

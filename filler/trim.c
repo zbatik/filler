@@ -6,13 +6,13 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 15:45:57 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/19 16:27:45 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/19 16:40:32 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int offset_top(char **piece, t_point dim)
+int		off_top(char **piece, t_point dim)
 {
 	int i;
 
@@ -26,7 +26,7 @@ int offset_top(char **piece, t_point dim)
 	return (-1);
 }
 
-int offset_bottom(char **piece, t_point dim)
+int		off_bot(char **piece, t_point dim)
 {
 	int i;
 	int count;
@@ -43,7 +43,7 @@ int offset_bottom(char **piece, t_point dim)
 	return (-1);
 }
 
-int	offset_left(char **piece, t_point dim)
+int		off_lef(char **piece, t_point dim)
 {
 	int		i;
 	int		j;
@@ -62,7 +62,7 @@ int	offset_left(char **piece, t_point dim)
 	return (-1);
 }
 
-int offset_right(char **piece, t_point dim)
+int		off_rig(char **piece, t_point dim)
 {
 	int i;
 	int j;
@@ -78,22 +78,24 @@ int offset_right(char **piece, t_point dim)
 			if (piece[i][j] == '*')
 				return (count);
 		}
-		count ++;
+		count++;
 	}
 	perror("invalid piece");
 	return (-1);
 }
 
-void trim_piece(char **piece, t_filler *info)
+void	trim_piece(char **piece, t_filler *info)
 {
-	int		i;
-	int		j;
+	int			i;
+	int			j;
+	t_point		off;
 
+	off = info->piece.offset;
 	i = -1;
 	while (++i < info->piece.size.x)
 	{
 		j = -1;
 		while (++j < info->piece.size.y)
-			info->piece.data[i][j] = piece[i + info->piece.offset.x][ j + info->piece.offset.y];
+			info->piece.data[i][j] = piece[i + off.x][j + off.y];
 	}
 }
