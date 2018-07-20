@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:09:40 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/20 15:51:47 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/20 16:38:01 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int		main(void)
 	t_point		output;
 	int			success;
 
-	output.x = 0;
-	output.y = 0;
 	info = init_data();
 	while (1)
 	{
+		output = info->last_play;
 		update_data(info);
 		success = place(info, &output);
 		print_coords(output);
+		info->last_play = output;
 		if (success == 0)
 			break ;
 	}

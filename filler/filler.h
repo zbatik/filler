@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:19:31 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/20 15:48:52 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/20 16:06:16 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct	s_filler
 	t_piece		piece;
 	int			turn;
 	t_limit		limit;
+	t_point		last_play;
 }				t_filler;
 
 t_filler		*init_data();

@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 17:07:23 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/19 16:57:25 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/20 16:30:45 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static void	set_defaults(t_filler *info)
 	info->limit.right = 0;
 	info->limit.top = 0;
 	info->limit.bottom = 0;
+	info->last_play.x = 0;
+	info->last_play.y = 0;
 }
 
 t_filler	*init_data(void)

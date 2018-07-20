@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 12:20:12 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/20 15:50:22 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/20 16:47:54 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,50 @@ int	put(int xi, int yj, t_filler *info)
 	return (overlap);
 }
 
+int ft_pow(int n, int m)
+{
+	int ret;
+
+	ret = 1;
+	while (m >= 0)
+	{
+		ret *= n;
+		m--;
+	}
+	return (ret);
+}
+
+void	set_output(int i, int j, t_point *output, t_filler *info)
+{
+	output->x = i - info->piece.offset.x;
+	output->y = j - info->piece.offset.y;
+}
+
+int	dist(t_point A, t_point B)
+{
+	return (ft_pow(A.x - B.x, 2) + ft_pow(A.y - B.y, 2));
+}
+
+void	rank_output(int i, int j, t_point *output, t_filler *info)
+{
+	t_point check;
+	t_point last_play;
+
+	last_play = info->last_play;
+	check.x = i;
+	check.y = j; 
+	if (dist(last_play, check) > dist(*output, last_play))
+		set_output(i, j, output, info);
+}
+
 int	place(t_filler *info, t_point *output)
 {
 	int		i;
 	int		j;
 	int		overlap;
+	int		success;
 
+	success = 0;
 	i = info->limit.top;
 	while (i < info->limit.bottom + 1)
 	{
@@ -56,14 +94,15 @@ int	place(t_filler *info, t_point *output)
 			overlap = put(i, j, info);
 			if (overlap == 1)
 			{
-				output->x = i - info->piece.offset.x;
-				output->y =	j - info->piece.offset.y;
+				if (success == 0)
+					set_output(i, j, output, info);
+				success = 1;
+				rank_output(i, j, output, info);
 				info->turn++;
-				return (1);
 			}
 			j++;
 		}
 		i++;
 	}
-	return (0);
+	return (success);
 }
