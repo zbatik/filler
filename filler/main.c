@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:09:40 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/19 16:51:31 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/20 15:32:56 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,7 @@ int		main(void)
 			break ;
 		}
 	}
+	ft_arrdel(&info->piece.data, info->piece.size.x);
+	ft_arrdel(&info->map, info->map_size.x);
+	free(info);
 }

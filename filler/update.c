@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 13:20:07 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/19 16:35:07 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/20 15:31:14 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	update_piece(t_filler *info)
 	char	**piece;
 	t_point dim;
 
+	ft_arrdel(&info->piece.data, info->piece.size.x);
 	get_dimension(&dim.x, &dim.y, 6);
 	piece = ft_arrnew(dim.x, dim.y);
 	get_info(dim.x, 0, piece);
@@ -54,7 +55,7 @@ void	update_piece(t_filler *info)
 	info->piece.size.y = dim.y - info->piece.offset.y - off_rig(piece, dim);
 	info->piece.data = ft_arrnew(info->piece.size.x, info->piece.size.y);
 	trim_piece(piece, info);
-	//ft_arrdel(piece);
+	ft_arrdel(&piece, dim.x);
 }
 
 void	update_data(t_filler *info)

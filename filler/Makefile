@@ -6,7 +6,7 @@
 #    By: zbatik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/10 11:19:07 by zbatik            #+#    #+#              #
-#    Updated: 2018/07/19 11:22:22 by zbatik           ###   ########.fr        #
+#    Updated: 2018/07/20 14:55:50 by zbatik           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,4 +30,4 @@ run: all
 	../resources/filler_vm -p1 ../resources/players/abanlin.filler -p2 $(BIN) -f ../resources/maps/map00
 
 norm:
-	norminette $(FILES) filler.h
+	norminette $(FILES) *.c *.h
