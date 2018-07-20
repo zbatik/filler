@@ -6,7 +6,7 @@
 #    By: zbatik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/10 11:19:07 by zbatik            #+#    #+#              #
-#    Updated: 2018/07/20 14:55:50 by zbatik           ###   ########.fr        #
+#    Updated: 2018/07/20 15:45:19 by zbatik           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ LIBFT_DIR = ../libft/
 LIB	= $(join $(LIBFT_DIR),libft.a)
 BIN = ./zbatik.filler
 FILES = main.c \
-		display.c \
 		setup.c \
 		update.c \
 		placement.c \

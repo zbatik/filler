@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:19:31 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/20 15:21:39 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/20 15:48:52 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_filler		*init_data();
 void			put_error_arr(char **arr);
 void			print_piece(t_filler *info);
 void			print_map(t_filler *info);
-void			print_coords(int x, int y);
+//void			print_coords(int x, int y);
 
 void			get_dimension(int *x, int *y, int offset);
 void			update_data(t_filler *info);
@@ -73,6 +73,6 @@ int				off_bot(char **piece, t_point dim);
 int				off_lef(char **piece, t_point dim);
 int				off_rig(char **piece, t_point dim);
 void			trim_piece(char **piece, t_filler *info);
-int				place(t_filler *info);
+int				place(t_filler *info, t_point *output);
 void			update_limit(t_filler *info);
 #endif

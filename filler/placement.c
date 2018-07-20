@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 12:20:12 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/19 16:58:36 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/20 15:50:22 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	put(int xi, int yj, t_filler *info)
 	return (overlap);
 }
 
-int	place(t_filler *info)
+int	place(t_filler *info, t_point *output)
 {
 	int		i;
 	int		j;
@@ -56,8 +56,8 @@ int	place(t_filler *info)
 			overlap = put(i, j, info);
 			if (overlap == 1)
 			{
-				print_coords(i - info->piece.offset.x,
-						j - info->piece.offset.y);
+				output->x = i - info->piece.offset.x;
+				output->y =	j - info->piece.offset.y;
 				info->turn++;
 				return (1);
 			}

@@ -6,27 +6,36 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:09:40 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/20 15:32:56 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/20 15:51:47 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
+void	print_coords(t_point output)
+{
+	ft_putnbr(output.x);
+	ft_putchar(' ');
+	ft_putnbr(output.y);
+	ft_putchar('\n');
+}
+
 int		main(void)
 {
 	t_filler	*info;
-	int			ret;
+	t_point		output;
+	int			success;
 
+	output.x = 0;
+	output.y = 0;
 	info = init_data();
 	while (1)
 	{
 		update_data(info);
-		ret = place(info);
-		if (ret == 0)
-		{
-			print_coords(0, 0);
+		success = place(info, &output);
+		print_coords(output);
+		if (success == 0)
 			break ;
-		}
 	}
 	ft_arrdel(&info->piece.data, info->piece.size.x);
 	ft_arrdel(&info->map, info->map_size.x);
