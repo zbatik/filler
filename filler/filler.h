@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:19:31 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/20 16:06:16 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/21 15:15:09 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,15 @@ typedef struct	s_filler
 	t_piece		piece;
 	int			turn;
 	t_limit		limit;
+	int			**heatmap;
 	t_point		last_play;
 }				t_filler;
 
 t_filler		*init_data();
 
 void			put_error_arr(char **arr);
+void			put_error_intarr(int **heatmap, int x, int y);
+
 void			print_piece(t_filler *info);
 void			print_map(t_filler *info);
 //void			print_coords(int x, int y);

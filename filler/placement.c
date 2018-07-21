@@ -6,18 +6,19 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 12:20:12 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/20 16:47:54 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/21 15:40:17 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int	put(int xi, int yj, t_filler *info)
+int	put(int xi, int yj, t_filler *info, int *score)
 {
 	int i;
 	int j;
 	int overlap;
 
+	*score = 0;
 	overlap = 0;
 	i = xi;
 	while (i < xi + info->piece.size.x)
@@ -30,7 +31,10 @@ int	put(int xi, int yj, t_filler *info)
 				if (info->map[i][j] == info->player.opp_token)
 					return (0);
 				if (info->map[i][j] == info->player.token)
+				{
+					*score += info->heatmap[i][j];
 					overlap++;
+				}
 				if (overlap > 1)
 					return (0);
 			}
@@ -40,7 +44,7 @@ int	put(int xi, int yj, t_filler *info)
 	}
 	return (overlap);
 }
-
+/*
 int ft_pow(int n, int m)
 {
 	int ret;
@@ -53,13 +57,13 @@ int ft_pow(int n, int m)
 	}
 	return (ret);
 }
-
+*/
 void	set_output(int i, int j, t_point *output, t_filler *info)
 {
 	output->x = i - info->piece.offset.x;
 	output->y = j - info->piece.offset.y;
 }
-
+/*
 int	dist(t_point A, t_point B)
 {
 	return (ft_pow(A.x - B.x, 2) + ft_pow(A.y - B.y, 2));
@@ -76,33 +80,48 @@ void	rank_output(int i, int j, t_point *output, t_filler *info)
 	if (dist(last_play, check) > dist(*output, last_play))
 		set_output(i, j, output, info);
 }
+*/
+/*
+int		score_play(int i, int j, t_filler *info)
+{
+	return(info->heatmap[i][j]);
+}
+*/
+int	comp_score(int *prev_score, int score)
+{
+	if (*prev_score <= score)
+	{
+		*prev_score = score;
+		return (1);
+	}
+	return (0);
+}
 
 int	place(t_filler *info, t_point *output)
 {
 	int		i;
 	int		j;
-	int		overlap;
 	int		success;
+	int 	score;
+	int		prev_score;
 
+	prev_score = 0;
+	score = 0;
 	success = 0;
-	i = info->limit.top;
-	while (i < info->limit.bottom + 1)
+	i = info->limit.top - 1;
+	while (++i < info->limit.bottom + 1)
 	{
-		j = info->limit.left;
-		while (j < info->limit.right + 1)
+		j = info->limit.left - 1;
+		while (++j < info->limit.right + 1)
 		{
-			overlap = put(i, j, info);
-			if (overlap == 1)
+			if (1 == put(i, j, info, &score))
 			{
-				if (success == 0)
-					set_output(i, j, output, info);
 				success = 1;
-				rank_output(i, j, output, info);
+				if (comp_score(&prev_score, score))
+					set_output(i, j, output, info);
 				info->turn++;
 			}
-			j++;
 		}
-		i++;
 	}
 	return (success);
 }

@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 17:07:23 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/20 16:30:45 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/21 15:10:15 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	set_defaults(t_filler *info)
 	info->piece.offset.x = 0;
 	info->piece.offset.y = 0;
 	info->turn = 0;
+	info->heatmap = NULL;
 	info->limit.left = 0;
 	info->limit.right = 0;
 	info->limit.top = 0;
@@ -46,6 +47,7 @@ static void	set_defaults(t_filler *info)
 
 t_filler	*init_data(void)
 {
+	int			i;
 	t_filler	*info;
 
 	info = (t_filler*)malloc(sizeof(t_filler));
@@ -54,5 +56,9 @@ t_filler	*init_data(void)
 	get_dimension(&(info->map_size.x), &(info->map_size.y), 8);
 	skip_lines(FD, 1);
 	info->map = ft_arrnew(info->map_size.x, info->map_size.y);
+	info->heatmap = (int **)malloc(sizeof(int*) * info->map_size.x);
+	i = -1;
+	while (++i < info->map_size.x)
+		info->heatmap[i] = (int*)malloc(sizeof(int) * info->map_size.y);
 	return (info);
 }
