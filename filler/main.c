@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:09:40 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/20 16:38:01 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/21 14:23:09 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,15 @@ int		main(void)
 		output = info->last_play;
 		update_data(info);
 		success = place(info, &output);
-		print_coords(output);
 		info->last_play = output;
-		if (success == 0)
+		if (success == 1)
+			print_coords(output);
+		else
 			break ;
 	}
+	output.x = 0;
+	output.y = 0;
+	print_coords(output);
 	ft_arrdel(&info->piece.data, info->piece.size.x);
 	ft_arrdel(&info->map, info->map_size.x);
 	free(info);
