@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 13:20:07 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/21 16:12:15 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/23 14:11:12 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,6 @@ void	get_info(int x, int offset, char **store)
 		free(in);
 	}
 	store[i] = 0;
-}
-
-static void	update_heatmap(t_filler *info)
-{
-	int i;
-	int j;
-	int heat;
-
-	i = -1;
-	while (++i < info->map_size.x)
-	{
-		j = -1;
-		while (++j < info->map_size.y)
-		{
-			if (i < info->map_size.x / 2)
-				heat = i;
-			else
-				heat = info->map_size.x - i;
-			if (j < info->map_size.y / 2)
-				heat += j;
-			else
-				heat += info->map_size.y - j;
-			info->heatmap[i][j] = heat;
-		}
-	}
-//	put_error_intarr(info->heatmap, info->map_size.x, info->map_size.y);
 }
 
 void	get_dimension(int *x, int *y, int offset)
@@ -91,5 +65,5 @@ void	update_data(t_filler *info)
 	get_info(info->map_size.x, 4, info->map);
 	update_piece(info);
 	update_limit(info);
-	update_heatmap(info);
+//	update_heatmap(info);
 }

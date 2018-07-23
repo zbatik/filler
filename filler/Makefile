@@ -6,7 +6,7 @@
 #    By: zbatik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/10 11:19:07 by zbatik            #+#    #+#              #
-#    Updated: 2018/07/21 15:15:24 by zbatik           ###   ########.fr        #
+#    Updated: 2018/07/23 13:17:25 by zbatik           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ FILES = main.c \
 		placement.c \
 		limit.c \
 	   	trim.c \
-		display.c	
+		display.c \
+		algo.c	
 
 all:
 	rm -f $(BIN)
@@ -30,4 +31,4 @@ run: all
 	../resources/filler_vm -p1 ../resources/players/abanlin.filler -p2 $(BIN) -f ../resources/maps/map00
 
 norm:
-	norminette $(FILES) *.c *.h
+	norminette $(FILES) *.h

@@ -6,18 +6,16 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:09:40 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/21 14:44:38 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/23 11:58:49 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void	print_coords(t_point output)
+void	set_output(int i, int j, t_point *output, t_filler *info)
 {
-	ft_putnbr(output.x);
-	ft_putchar(' ');
-	ft_putnbr(output.y);
-	ft_putchar('\n');
+	output->x = i - info->piece.offset.x;
+	output->y = j - info->piece.offset.y;
 }
 
 int		main(void)

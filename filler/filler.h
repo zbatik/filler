@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:19:31 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/21 15:15:09 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/23 13:59:03 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 # define FILLER_H
 
 # define FD	0
+# define DEFUALT_ALGO "dimond"
 
-# include "../libft/includes/libft.h"
-# include <stdio.h>
-# include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include <string.h>
+# include <unistd.h>
+# include <stdio.h>
+# include "../libft/includes/libft.h"
 
 typedef struct	s_point
 {
@@ -59,17 +59,15 @@ typedef struct	s_filler
 	t_limit		limit;
 	int			**heatmap;
 	t_point		last_play;
+	char		*algo;
 }				t_filler;
 
 t_filler		*init_data();
 
-void			put_error_arr(char **arr);
-void			put_error_intarr(int **heatmap, int x, int y);
+void			print_coords(t_point output);
 
-void			print_piece(t_filler *info);
-void			print_map(t_filler *info);
-//void			print_coords(int x, int y);
-
+void			set_output(int i, int j, t_point *output, t_filler *info);
+void			update_heatmap(t_filler *info);
 void			get_dimension(int *x, int *y, int offset);
 void			update_data(t_filler *info);
 int				off_top(char **piece, t_point dim);

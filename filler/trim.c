@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 15:45:57 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/19 16:40:32 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/23 12:09:30 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int		off_top(char **piece, t_point dim)
 		if (ft_element('*', piece[i]))
 			return (i);
 	}
-	perror("invalid piece");
 	return (-1);
 }
 
@@ -39,7 +38,6 @@ int		off_bot(char **piece, t_point dim)
 			return (count);
 		count++;
 	}
-	perror("invalid piece");
 	return (-1);
 }
 
@@ -58,7 +56,6 @@ int		off_lef(char **piece, t_point dim)
 				return (j);
 		}
 	}
-	perror("invalid piece");
 	return (-1);
 }
 
@@ -80,7 +77,6 @@ int		off_rig(char **piece, t_point dim)
 		}
 		count++;
 	}
-	perror("invalid piece");
 	return (-1);
 }
 
