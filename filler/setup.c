@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 17:07:23 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/23 14:10:28 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/23 17:54:45 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,17 @@ static void	select_algo(t_filler *info)
 	int		ret;
 	char	*line;
 
-	fd = open("select_strategy.txt", O_RDONLY);
+	fd = open("config", O_RDONLY);
 	ret = get_next_line(fd, &line);
+	fprintf(stderr, "ret: %d\n", ret);
 	if (ret != -1)
 	{
-		fprintf(stderr, "%s\n", line);
-		info->algo = line;
+		info->algo = 6 + line;
 		free(line);
 	}
 	else
 		info->algo = "dimond";
+	fprintf(stderr,"%s\n",info->algo);
 	close(fd);
 }
 
@@ -81,6 +82,8 @@ t_filler	*init_data(void)
 	select_algo(info);
 	while (++i < info->map_size.x)
 		info->heatmap[i] = (int*)malloc(sizeof(int) * info->map_size.y);
-	return (info);
 	update_heatmap(info);
+	put_heatmap(info);
+	return (info);
 }
+

@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 13:13:04 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/23 14:03:24 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/23 16:33:11 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,34 @@ void	dimond(t_filler *info)
 	}
 }
 
-void	left_top(t_filler *info)
+void	cross(t_filler *info)
+{
+	int i;
+	int j;
+	int heat;
+
+	i = -1;
+	while (++i < info->map_size.x)
+	{
+		j = -1;
+		while (++j < info->map_size.y)
+		{
+			if (i == j)
+				heat = info->map_size.x;
+			else if (i + j == ft_max(info->map_size.x, info->map_size.y))
+				heat = info->map_size.x;
+			else if (j != 0)
+				heat = ft_abs(info->heatmap[i][j - 1] - 1);
+			else
+				heat = 0;
+			info->heatmap[i][j] = heat;	
+		}
+	}
+}
+
+
+
+void	side_to_side(t_filler *info)
 {
 	int i;
 	int j;
@@ -49,22 +76,45 @@ void	left_top(t_filler *info)
 		while (++j < info->map_size.y)
 		{
 			if (0 == ft_strcmp(info->algo, "left_to_right"))	
-				info->heatmap[i][j] = j;
+				info->heatmap[i][j] = info->map_size.y - j;
 			else if (0 == ft_strcmp(info->algo, "top_to_bottom"))
+				info->heatmap[i][j] = info->map_size.x - i;
+			else if (0 == ft_strcmp(info->algo, "right_to_left"))	
+				info->heatmap[i][j] = j;
+			else if (0 == ft_strcmp(info->algo, "bottom_to_top"))
 				info->heatmap[i][j] = i;
 		}
 	}
 }
 
+void	put_heatmap(t_filler *info)
+{
+	int i = -1;
+	int j;
+	while (++i < info->map_size.x)
+	{
+		j = -1;
+		while (++j < info->map_size.y)
+			fprintf(stderr, "%d ", info->heatmap[i][j]);
+		fprintf(stderr, "\n");
+	}
+}
+
 void	update_heatmap(t_filler *info)
 {
-	fprintf(stderr, "%s\n", info->algo);
 	if (0 == ft_strcmp(info->algo, "dimond"))
 		dimond(info);
+	else if (0 == ft_strcmp(info->algo, "cross"))
+		cross(info);
 	else if (0 == ft_strcmp(info->algo, "top_to_bottom"))
-		left_top(info);
+		side_to_side(info);
 	else if (0 == ft_strcmp(info->algo, "left_to_right"))
-		left_top(info);
+		side_to_side(info);
+	else if (0 == ft_strcmp(info->algo, "right_to_left"))
+		side_to_side(info);
+	else if (0 == ft_strcmp(info->algo, "bottom_to_top"))
+		side_to_side(info);
 	else
 		dimond(info);
 }
+

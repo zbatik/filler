@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:19:31 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/23 13:59:03 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/23 14:32:42 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ t_filler		*init_data();
 
 void			print_coords(t_point output);
 
+void			dimond(t_filler *info);
+void			put_heatmap(t_filler *info);
 void			set_output(int i, int j, t_point *output, t_filler *info);
 void			update_heatmap(t_filler *info);
 void			get_dimension(int *x, int *y, int offset);
