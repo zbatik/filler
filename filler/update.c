@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 13:20:07 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/23 14:11:12 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/24 14:51:00 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,4 @@ void	update_data(t_filler *info)
 	get_info(info->map_size.x, 4, info->map);
 	update_piece(info);
 	update_limit(info);
-//	update_heatmap(info);
 }

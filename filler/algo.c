@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 13:13:04 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/23 16:33:11 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/24 14:51:17 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,10 @@ void	cross(t_filler *info)
 				heat = ft_abs(info->heatmap[i][j - 1] - 1);
 			else
 				heat = 0;
-			info->heatmap[i][j] = heat;	
+			info->heatmap[i][j] = heat;
 		}
 	}
 }
-
-
 
 void	side_to_side(t_filler *info)
 {
@@ -75,28 +73,15 @@ void	side_to_side(t_filler *info)
 		j = -1;
 		while (++j < info->map_size.y)
 		{
-			if (0 == ft_strcmp(info->algo, "left_to_right"))	
+			if (0 == ft_strcmp(info->algo, "left_to_right"))
 				info->heatmap[i][j] = info->map_size.y - j;
 			else if (0 == ft_strcmp(info->algo, "top_to_bottom"))
 				info->heatmap[i][j] = info->map_size.x - i;
-			else if (0 == ft_strcmp(info->algo, "right_to_left"))	
+			else if (0 == ft_strcmp(info->algo, "right_to_left"))
 				info->heatmap[i][j] = j;
 			else if (0 == ft_strcmp(info->algo, "bottom_to_top"))
 				info->heatmap[i][j] = i;
 		}
-	}
-}
-
-void	put_heatmap(t_filler *info)
-{
-	int i = -1;
-	int j;
-	while (++i < info->map_size.x)
-	{
-		j = -1;
-		while (++j < info->map_size.y)
-			fprintf(stderr, "%d ", info->heatmap[i][j]);
-		fprintf(stderr, "\n");
 	}
 }
 
@@ -117,4 +102,3 @@ void	update_heatmap(t_filler *info)
 	else
 		dimond(info);
 }
-

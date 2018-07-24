@@ -6,12 +6,11 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 15:06:35 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/23 14:25:33 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/24 14:51:31 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-#include <stdio.h>
 
 void	print_coords(t_point output)
 {

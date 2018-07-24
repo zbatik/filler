@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 17:07:23 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/23 17:54:45 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/24 14:52:04 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,12 @@ static void	set_defaults(t_filler *info)
 
 static void	select_algo(t_filler *info)
 {
-	int 	fd;
+	int		fd;
 	int		ret;
 	char	*line;
 
 	fd = open("config", O_RDONLY);
 	ret = get_next_line(fd, &line);
-	fprintf(stderr, "ret: %d\n", ret);
 	if (ret != -1)
 	{
 		info->algo = 6 + line;
@@ -62,7 +61,6 @@ static void	select_algo(t_filler *info)
 	}
 	else
 		info->algo = "dimond";
-	fprintf(stderr,"%s\n",info->algo);
 	close(fd);
 }
 
@@ -78,12 +76,10 @@ t_filler	*init_data(void)
 	skip_lines(FD, 1);
 	info->map = ft_arrnew(info->map_size.x, info->map_size.y);
 	info->heatmap = (int **)malloc(sizeof(int*) * info->map_size.x);
-	i = -1;
 	select_algo(info);
+	i = -1;
 	while (++i < info->map_size.x)
 		info->heatmap[i] = (int*)malloc(sizeof(int) * info->map_size.y);
 	update_heatmap(info);
-	put_heatmap(info);
 	return (info);
 }
-

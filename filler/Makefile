@@ -6,14 +6,14 @@
 #    By: zbatik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/10 11:19:07 by zbatik            #+#    #+#              #
-#    Updated: 2018/07/23 16:40:29 by zbatik           ###   ########.fr        #
+#    Updated: 2018/07/24 14:53:35 by zbatik           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FLAGS = -Wall -Werror -Wextra
 LIBFT_DIR = ../libft/
 LIB	= $(join $(LIBFT_DIR),libft.a)
-BIN = ./cross.filler
+BIN = ./zbatik.filler
 FILES = main.c \
 		setup.c \
 		update.c \
