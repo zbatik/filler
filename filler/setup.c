@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 17:07:23 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/24 14:52:04 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/24 15:05:26 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	set_player(t_filler *info)
 	get_next_line(FD, &line);
 	player_nbr = ft_atoi(10 + line);
 	info->player.token = "$OX"[player_nbr];
-	info->player.opp_token = "$XO"[player_nbr];
+	info->player.opp_tok = "$XO"[player_nbr];
 	free(line);
 }
 

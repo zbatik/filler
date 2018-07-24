@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 17:19:31 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/24 14:52:57 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/24 15:04:51 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct	s_piece
 
 typedef struct	s_player
 {
-	int		opp_token;
+	int		opp_tok;
 	char	token;
 }				t_player;
 

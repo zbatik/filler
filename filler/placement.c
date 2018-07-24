@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 12:20:12 by zbatik            #+#    #+#             */
-/*   Updated: 2018/07/23 12:01:57 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/07/24 15:09:25 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,27 @@
 
 int	put(int xi, int yj, t_filler *info, int *score)
 {
-	int i;
-	int j;
-	int overlap;
+	t_point c;
+	int		overlap;
 
-	*score = 0;
 	overlap = 0;
-	i = xi;
-	while (i < xi + info->piece.size.x)
+	c.x = xi - 1;
+	while (++c.x < xi + info->piece.size.x)
 	{
-		j = yj;
-		while (j < yj + info->piece.size.y)
+		c.y = yj - 1;
+		while (++c.y < yj + info->piece.size.y)
 		{
-			if (info->piece.data[i - xi][j - yj] == '*')
+			if (info->piece.data[c.x - xi][c.y - yj] == '*')
 			{
-				if (info->map[i][j] == info->player.opp_token)
-					return (0);
-				if (info->map[i][j] == info->player.token)
+				if (info->map[c.x][c.y] == info->player.token)
 				{
-					*score += info->heatmap[i][j];
+					*score += info->heatmap[c.x][c.y];
 					overlap++;
 				}
-				if (overlap > 1)
+				if (info->map[c.x][c.y] == info->player.opp_tok || overlap > 1)
 					return (0);
 			}
-			j++;
 		}
-		i++;
 	}
 	return (overlap);
 }
@@ -57,26 +51,25 @@ int	comp_score(int *prev_score, int score)
 
 int	place(t_filler *info, t_point *output)
 {
-	int		i;
-	int		j;
+	t_point	count;
 	int		success;
-	int 	score;
+	int		score;
 	int		prev_score;
 
 	prev_score = 0;
-	score = 0;
 	success = 0;
-	i = info->limit.top - 1;
-	while (++i < info->limit.bottom + 1)
+	count.x = info->limit.top - 1;
+	while (++count.x < info->limit.bottom + 1)
 	{
-		j = info->limit.left - 1;
-		while (++j < info->limit.right + 1)
+		count.y = info->limit.left - 1;
+		while (++count.y < info->limit.right + 1)
 		{
-			if (1 == put(i, j, info, &score))
+			score = 0;
+			if (1 == put(count.x, count.y, info, &score))
 			{
 				success = 1;
 				if (comp_score(&prev_score, score))
-					set_output(i, j, output, info);
+					set_output(count.x, count.y, output, info);
 				info->turn++;
 			}
 		}
